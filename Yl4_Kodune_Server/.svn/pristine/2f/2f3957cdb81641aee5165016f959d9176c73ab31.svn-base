@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="http://www.ttu.ee/idu0080/hinnakiri/1.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.ttu.ee/idu0080/hinnakiri/1.0" version="1.0">
+	<xs:element name="getHinnakiri" type="xs:string"/>
+	<xs:element name="getHinnakiriResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="hinnakiri" type="h:Hinnakiri"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hinnakiriFault"/>
+	<xs:complexType name="Toode">
+		<xs:sequence>
+			<xs:element name="kood" type="xs:int"/>
+			<xs:element name="nimetus" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Hind">
+		<xs:sequence>
+			<xs:element name="summa" type="xs:decimal"/>
+			<xs:element name="valuuta">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EEK"/>
+						<xs:enumeration value="EUR"/>
+						<xs:enumeration value="USD"/>
+						<xs:enumeration value="RBL"/>
+						<xs:enumeration value="GBP"/>
+						<xs:enumeration value="SEK"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Hinnakiri">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="hinnakirjaRida">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="toode" type="h:Toode"/>
+						<xs:element name="hind" type="h:Hind"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

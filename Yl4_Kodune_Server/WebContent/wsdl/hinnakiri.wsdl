@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Kristjan Kuhi (Ericsson Eesti AS) -->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://www.ttu.ee/idu0080/hinnakiri/1.0" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ttu.ee/idu0080/hinnakiri/wsdl/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HinnakiriService" targetNamespace="http://www.ttu.ee/idu0080/hinnakiri/wsdl/1.0">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.ttu.ee/idu0080/hinnakiri/1.0" schemaLocation="hinnakiri.xsd"/>
+		</xsd:schema>
+	</types>
+	<message name="getHinnakiri">
+		<part element="ns:getHinnakiri" name="parameters"/>
+	</message>
+	<message name="getHinnakiritResponse">
+		<part element="ns:getHinnakiriResponse" name="parameters"/>
+	</message>
+	<message name="NewMessage"/>
+	<portType name="HinnakiriService">
+		<operation name="getHinnakiri">
+			<input message="tns:getHinnakiri"/>
+			<output message="tns:getHinnakiritResponse"/>
+		</operation>
+	</portType>
+	<binding name="HinnakiriServicePortBinding" type="tns:HinnakiriService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getHinnakiri">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="HinnakiriService">
+		<port binding="tns:HinnakiriServicePortBinding" name="HinnakiriPort">
+			<soap:address location="http://localhost:8080/HinnakiriService"/>
+		</port>
+	</service>
+</definitions>
